@@ -7,13 +7,16 @@
 </div>
 
 <div class="row">
-  <div class="d-flex col-8">
-  <% @lists.each do |list| %>
-    <div class="row">
+  <div class="d-flex col-6">
+    <% @lists.each do |list| %>
       <div class="m-3 p-3">
         <div class="card">
           <div class="card-body">
-            <%= cl_image_tag list.photo.key, width: 400, height: 300, crop: :fill %>
+            <% if list.photo.attached? %>
+              <%= cl_image_tag(list.photo.key, width: 300, height: 300, crop: :fill) %>
+            <% else %>
+              <%= image_tag("titus_yellow.jpeg", size: "320x200") %>
+            <% end %>
             <h5 class="card-title"><%= list.name %></h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
             <%= link_to list_path(list) do %>
@@ -22,16 +25,15 @@
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-  </div>
-  <div class="col-4">
-    <div>
-    <h2>Create New List</h2>
-    <p></p>
-    </div>
-    <div>
-    <%= render "form", list: @list %>
+    <% end %>
+    <div class="col-6">
+      <div>
+      <h2>Create New List</h2>
+      <p></p>
+      </div>
+      <div>
+      <%= render "form", list: @list %>
+      </div>
     </div>
   </div>
 </div>
