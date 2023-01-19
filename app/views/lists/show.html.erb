@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="d-flex justify-content-between m-3">
+    <h1><%= @list.name %></h1>
+    <%= link_to lists_path do%>
+      <button class="btn btn-primary">Back to lists</button>
+    <% end %>
+  </div>
+  </div>
+  <div class="container">
+    <%= link_to new_list_bookmark_path(@list) do %>
+      <button class="btn btn-primary m-4">Add New Movie</button>
+    <% end %>
+    <div class="d-flex">
+    <% @list.bookmarks.each do |bookmark|%>
+      <div class="card" style="width: 18rem;">
+        <img src="<%= bookmark.movie.poster_url %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="d-flex">
+            <h5 class="card-title"><%= bookmark.movie.title %></h5>
+            <%= ('⭐️' * bookmark.movie.rating)%><%= '☆' * ( 10 - bookmark.movie.rating ) %>
+          </div>
+          <p><strong>Comment: </strong><%= bookmark.comment %></p>
+          <p class="card-text"><%= bookmark.movie.overview %></p>
+          <%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+</div>
