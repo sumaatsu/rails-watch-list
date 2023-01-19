@@ -15,7 +15,7 @@
             <% if list.photo.attached? %>
               <%= cl_image_tag(list.photo.key, width: 300, height: 300, crop: :fill) %>
             <% else %>
-              <%= image_tag("titus_yellow.jpeg", size: "320x200") %>
+              <%= image_tag("/app/assets/images/titus_yellow.jpeg", size: "320x200") %>
             <% end %>
             <h5 class="card-title"><%= list.name %></h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
