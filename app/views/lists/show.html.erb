@@ -28,5 +28,9 @@
     <% end %>
     </div>
   </div>
-
+  <div class="container">
+  <%= link_to list_path(@list), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} do %>
+      <button class="btn btn-primary m-4">Delete List</button>
+    <% end %>
+    </div>
 </div>

@@ -14,8 +14,17 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.save
-    redirect_to root_path(@list)
+    if @list.save
+      redirect_to root_path(@list)
+    else
+      render :new, status: see_other
+    end
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    @list.delete
+    redirect_to root_path
   end
 
   private
